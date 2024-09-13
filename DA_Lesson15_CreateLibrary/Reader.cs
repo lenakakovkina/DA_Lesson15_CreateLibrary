@@ -20,13 +20,22 @@ class Reader
         return $"{name}";
     }
 
+    // Method to add a book to the reader
     public void AssignBook(Book book)
     {
        
         assignedBooks.Add(book);
         Console.WriteLine($"{name} borrowed \"{book.name}\"");
     }
-    
+
+    // Method to remove a book from the reader
+    public void RemoveBook(Book book)
+    {
+
+        assignedBooks.Remove(book);
+        Console.WriteLine($"{name} return \"{book.name}\" to the library");
+    }
+
     // Show the reader's borrowed books
     public void ShowBorrowedBooks()
     {

@@ -1,10 +1,12 @@
 ﻿
 using System.Reflection.PortableExecutable;
+using System.Xml.Linq;
 using static System.Reflection.Metadata.BlobBuilder;
 
 class Library
 {
     public List <Book> books = new List <Book> ();
+    public List<Book> lentToReadersbooks = new List<Book>();
     public List<Reader> readers = new List<Reader>();
     public Library(List<Book> books, List<Reader> readers)
     {
@@ -54,8 +56,8 @@ class Library
         if (bookToLend != null)
         {
             books.Remove(bookToLend);
+            lentToReadersbooks.Add(bookToLend);
             reader.AssignBook(bookToLend);
-            Console.WriteLine($"{bookToLend} has been borrowed from the library.");
             return bookToLend;
         }
         else
@@ -64,5 +66,24 @@ class Library
             return null;
         }
 
+    }
+    // Method to bring back a book
+    public Book AddBook(string bookName, Reader reader)
+    {
+
+        Book bookToReturn = lentToReadersbooks.Find(b => b.name == bookName);
+
+        if (bookToReturn != null)
+        {
+            books.Add(bookToReturn);
+            lentToReadersbooks.Remove(bookToReturn);
+            reader.RemoveBook(bookToReturn);
+            return bookToReturn;
+        }
+        else
+        {
+            Console.WriteLine($"The book \"{bookName}\" do not belong to our library.");
+            return null;
+        }
     }
 }
