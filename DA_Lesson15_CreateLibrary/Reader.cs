@@ -8,13 +8,14 @@ class Reader
     public int id { get; private set; }
 
     public List<Book> assignedBooks = new List<Book>();
+   
 
     public Reader(string name, int id)
     {
         this.name = name;
         this.id = id;
     }
-
+ 
     public override string ToString()
     {
         return $"{name}";
@@ -45,12 +46,17 @@ class Reader
         }
         else
         {
-            Console.WriteLine($"{name} borrowed books:");
+            Console.WriteLine($"{name} borrowed {assignedBooks.Count} books:");
             foreach (Book book in assignedBooks)
             {
                 Console.WriteLine($"- {book}");
             }
+           
         }
     }
-
+    // Quantity of borrowed books by reader
+    public int QuantityOfBorrowedBooks()
+    {
+        return assignedBooks.Count;
+    }
 }

@@ -14,6 +14,8 @@ class Library
         this.readers = readers;
     }
 
+    public static int MaxBookPerReader=2;
+
     // Method to show all books in the library
     public void ShowAvailableBooks()
     {
@@ -51,7 +53,13 @@ class Library
     // Method to lend a book
     public Book LendBook(string bookName, Reader reader)
     {
-       Book bookToLend = books.Find(b => b.name == bookName);
+        if (reader.QuantityOfBorrowedBooks() >= MaxBookPerReader)
+        {
+            Console.WriteLine($"{reader.name} cannot borrow more than {MaxBookPerReader} books.");
+            return null;
+        }
+
+        Book bookToLend = books.Find(b => b.name == bookName);
 
         if (bookToLend != null)
         {
@@ -86,4 +94,6 @@ class Library
             return null;
         }
     }
+
+    
 }
