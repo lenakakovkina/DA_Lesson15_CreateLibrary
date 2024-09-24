@@ -32,6 +32,7 @@
             {
                 case "1":
                     library.ShowAvailableBooks();
+                    Console.WriteLine($"There are {library.avaliableBooksInLibrary} books in the library.");
                     break;
                 case "2":
                     library.ShowAvailableReaders();

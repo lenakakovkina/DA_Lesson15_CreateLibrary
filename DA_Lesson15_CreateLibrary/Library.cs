@@ -5,7 +5,7 @@ using static System.Reflection.Metadata.BlobBuilder;
 
 class Library
 {
-    public List <Book> books = new List <Book> ();
+    public List<Book> books = new List<Book>();
     public List<Book> lentToReadersbooks = new List<Book>();
     public List<Reader> readers = new List<Reader>();
     public Library(List<Book> books, List<Reader> readers)
@@ -14,7 +14,7 @@ class Library
         this.readers = readers;
     }
 
-    public static int MaxBookPerReader=2;
+    public static int MaxBookPerReader = 2;
 
     // Method to show all books in the library
     public void ShowAvailableBooks()
@@ -32,6 +32,8 @@ class Library
             }
         }
     }
+    // Count all avaliable books in the library
+   public int avaliableBooksInLibrary {  get { return books.Count; } }
 
     // Method to show all readers in the library
     public void ShowAvailableReaders()
